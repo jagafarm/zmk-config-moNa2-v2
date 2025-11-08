@@ -28,11 +28,6 @@
             bindings = <&lt 4 ESC>;
             key-positions = <39 38>;
         };
-
-        tab {
-            bindings = <&kp TAB>;
-            key-positions = <11 12>;
-        };
     };
 
     macros {
@@ -131,9 +126,9 @@
 
         MOUSE {
             bindings = <
-&trans  &trans    &trans    &trans    &trans                    &trans  &trans    &trans    &trans    &trans
-&trans  &mkp MB3  &mkp MB2  &mkp MB1  &trans            &trans  &trans  &mkp MB1  &mkp MB2  &mkp MB3  &trans
-&trans  &trans    &trans    &trans    &trans  &trans    &trans  &trans  &trans    &trans    &trans    &trans
+&trans  &trans    &trans    &trans    &trans                    &trans    &trans    &trans    &trans  &trans
+&trans  &mkp MB3  &mkp MB2  &mkp MB1  &trans            &trans  &mkp MB3  &mkp MB1  &mkp MB2  &trans  &trans
+&trans  &trans    &trans    &trans    &trans  &trans    &trans  &trans    &trans    &trans    &trans  &trans
 &trans  &trans    &trans    &trans    &trans  &trans    &trans  &trans                                &trans
             >;
 
