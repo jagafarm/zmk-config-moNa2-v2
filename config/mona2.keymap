@@ -76,10 +76,10 @@
 
         default_layer {
             bindings = <
-&kp Q             &kp W         &kp E             &kp R       &kp T                                                                         &kp Y                   &kp U  &kp I      &lt_to_layer_0 5 O  &kp P
-&kp A             &kp S         &kp D             &kp F       &kp G                                             &kp LG(LEFT_BRACKET)        &kp H                   &kp J  &kp K      &kp L               &kp SEMICOLON
-&mt LEFT_SHIFT Z  &kp X         &kp C             &kp V       &kp B                   &lt_to_layer_0 5 LG(W)    &kp LG(RIGHT_BRACKET)       &kp N                   &kp M  &kp COMMA  &kp DOT             &mt RIGHT_SHIFT SLASH
-&kp LCTRL         &kp LEFT_ALT  &kp LEFT_COMMAND  &kp DELETE  &lt_to_layer_0 2 SPACE  &lt_to_layer_0 3 ESC      &lt_to_layer_0 3 BACKSPACE  &lt_to_layer_0 1 ENTER                                        &lt_to_layer_0 6 TAB
+&kp Q             &kp W         &kp E             &kp R       &kp T                                                                       &kp Y                   &kp U  &kp I      &lt_to_layer_0 5 O  &kp P
+&kp A             &kp S         &kp D             &kp F       &kp G                                           &kp LG(LEFT_BRACKET)        &kp H                   &kp J  &kp K      &kp L               &kp SEMICOLON
+&mt LEFT_SHIFT Z  &kp X         &kp C             &kp V       &kp B                   &tog 5                  &kp LG(RIGHT_BRACKET)       &kp N                   &kp M  &kp COMMA  &kp DOT             &mt RIGHT_SHIFT SLASH
+&kp LCTRL         &kp LEFT_ALT  &kp LEFT_COMMAND  &kp DELETE  &lt_to_layer_0 2 SPACE  &lt_to_layer_0 3 ESC    &lt_to_layer_0 3 BACKSPACE  &lt_to_layer_0 1 ENTER                                        &kp TAB
             >;
 
             sensor-bindings = <&scroll_up_down>;
