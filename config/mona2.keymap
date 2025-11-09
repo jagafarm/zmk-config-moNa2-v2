@@ -95,7 +95,7 @@
         layer_2 {
             bindings = <
 &kp EXCLAMATION  &kp AT_SIGN           &kp POUND              &kp DOLLAR        &kp PERCENT                          &kp CARET  &kp AMPERSAND  &kp ASTERISK       &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS
-&kp GRAVE        &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp LEFT_BRACKET  &kp RIGHT_BRACKET            &trans  &mkp MB3   &mkp MB1       &mkp MB2           &kp EQUAL             &kp KP_MINUS
+&kp GRAVE        &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp LEFT_BRACKET  &kp RIGHT_BRACKET            &trans  &mkp MB3   &mkp MB1       &mkp MB2           &kp EQUAL             &kp MINUS
 &kp LG(Z)        &kp LG(X)             &kp LG(C)              &kp LG(V)         &kp LG(B)          &trans    &trans  &kp LG(W)  &kp LS(LG(T))  &kp LC(LS(EQUAL))  &kp SQT               &kp NON_US_BACKSLASH
 &trans           &trans                &trans                 &trans            &trans             &trans    &trans  &trans                                                             &trans
             >;
