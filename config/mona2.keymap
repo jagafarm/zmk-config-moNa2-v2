@@ -43,6 +43,11 @@
             bindings = <&mkp MB3>;
             key-positions = <16 17>;
         };
+
+        Hankaku {
+            bindings = <&kp LC(SPACE)>;
+            key-positions = <33 37>;
+        };
     };
 
     macros {
