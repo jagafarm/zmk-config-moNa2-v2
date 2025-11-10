@@ -47,6 +47,7 @@
         Hankaku {
             bindings = <&kp LC(SPACE)>;
             key-positions = <33 37>;
+            timeout-ms = <50>;
         };
     };
 
