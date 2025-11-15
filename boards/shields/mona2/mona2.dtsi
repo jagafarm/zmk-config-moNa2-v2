@@ -15,8 +15,8 @@
         #input-processor-cells = <2>;
         require-prior-idle-ms = <AML_REQUIRE_IDLE_MS>;
         /* Any key press will drop the AML layer immediately */
-        /* Keep AML active while clicking mouse buttons (positions with MB1/2/3) */
-        excluded-positions = <11 12 13 17 18 19>;
+        /* Keep AML active while clicking the mouse button key (position 17 = MB1) */
+        excluded-positions = <17>;
     };
 
     physical_layout0: physical_layout_0 {
