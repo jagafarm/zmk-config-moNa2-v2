@@ -45,3 +45,9 @@ mona2_r.overlay
 - マウスレイヤー（MOUSE=5）の自動切替に、キー入力中は発動しないガードを追加しました。`boards/shields/mona2/mona2.dtsi` 内の `aml_temp_layer` で `require-prior-idle-ms = <400>;` を指定しています。
 - これにより、キー入力後 400ms 以内にトラックボールへ触れてもマウスレイヤーに上がりません。必要に応じて値を調整してください。
 - `excluded-positions` はマウスボタンを割り当てたキー位置のみに設定しています（位置 17 = MB1）。クリックではレイヤーが落ちませんが、他のキー（文字キーなど）を押すとレイヤーが即解除されます。
+
+## Hold-Tap/LT 設定メモ
+- 共通 LT (`&lt`): `quick-tap-ms=300`, `flavor="balanced"` を基本設定に使用。例: `&lt 2 ENTER` など。
+- `lt_to_layer_0`: タップでレイヤ0に戻すマクロ、ホールドで `&mo`。`tapping-term-ms=200` と短めに設定。
+- `lt_space`: スペース専用 LT。`bindings=<&mo 1>, <&kp SPACE>`、`flavor="tap-preferred"`, `tapping-term-ms=230` で Ctrl→Space でもタップ判定を取りやすく調整。
+- `mt` (モッドタップ): シフト用。`flavor="balanced"`, `quick-tap-ms=0` で即判定しつつバランス寄り。
