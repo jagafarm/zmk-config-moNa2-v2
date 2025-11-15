@@ -29,19 +29,14 @@
             key-positions = <39 38>;
         };
 
-        LeftClick {
-            bindings = <&mkp MB1>;
+        MiddleClick {
+            bindings = <&mkp MB3>;
             key-positions = <17 18>;
         };
 
         RightClick {
             bindings = <&mkp MB2>;
             key-positions = <18 19>;
-        };
-
-        MiddleClick {
-            bindings = <&mkp MB3>;
-            key-positions = <16 17>;
         };
 
         Hankaku {
