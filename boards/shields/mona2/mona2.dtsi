@@ -3,9 +3,17 @@
 #include <dt-bindings/zmk/input_transform.h>
 #include <physical_layouts.dtsi>
 
+#define AML_REQUIRE_IDLE_MS 150
+
 / {
     chosen {
         zmk,physical-layout = &physical_layout0;
+    };
+
+    aml_temp_layer: aml_temp_layer {
+        compatible = "zmk,input-processor-temp-layer";
+        #input-processor-cells = <2>;
+        require-prior-idle-ms = <AML_REQUIRE_IDLE_MS>;
     };
 
     physical_layout0: physical_layout_0 {
@@ -93,7 +101,7 @@
             <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>,         //Y軸反転
             //<&zip_xy_transform INPUT_TRANSFORM_XY_SWAP>,        //X軸とY軸の入れ替え
             //<&zip_xy_transform INPUT_TRANSFORM_X_INVERT>,       //X軸反転
-            <&zip_temp_layer 5 550>;                              //オートマウスレイヤーの選択
+            <&aml_temp_layer 5 550>;                              //オートマウスレイヤーの選択（タッチの最小時間あり）
     };
 
     left_encoder: encoder_left {
