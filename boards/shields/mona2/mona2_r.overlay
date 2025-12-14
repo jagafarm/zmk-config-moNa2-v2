@@ -48,20 +48,17 @@
 
     trackball_central: trackball_central@0 {
         status = "okay";
-        compatible = "pixart,pmw3610";  //トラボセンサ用のドライバとバインド
+        compatible = "pixart,pmw3610-alt";  //トラボセンサ用のドライバとバインド(alt版)
         reg = <0>;
         spi-max-frequency = <2000000>;
-        motion-gpios = <&gpio0 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>; //P0.02を指定(MOTION)
-        // cpi = <1200>;
+        irq-gpios = <&gpio0 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>; //P0.02を指定(MOTION)
+        cpi = <1200>;
         // swap-xy;
         invert-x; //COROPIT版ではコメントアウトを外す
         invert-y; //COROPIT版ではコメントアウトを外す
-        zephyr,axis-x = <INPUT_REL_X>;
-        zephyr,axis-y = <INPUT_REL_Y>;
-        run-downshift-time-ms = <3264>;
-        rest1-sample-time-ms = <20>;
-        rest1-downshift-time-ms = <9600>;
-        rest2-sample-time-ms = <100>;
+        evt-type = <INPUT_EV_REL>;
+        x-input-code = <INPUT_REL_X>;
+        y-input-code = <INPUT_REL_Y>;
     };
 };
 
@@ -70,7 +67,7 @@
 &trackball_central_listener {
     status = "okay";
     device = <&trackball_central>;
-    input-processors = <&zip_xy_scaler 5 2>, <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>, <&aml_temp_layer 5 550>;
+    input-processors = <&zip_xy_transform INPUT_TRANSFORM_Y_INVERT>, <&aml_temp_layer 5 550>;
 
     scroller {
         layers = <3>;
