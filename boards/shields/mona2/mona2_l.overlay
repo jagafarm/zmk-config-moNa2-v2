@@ -14,3 +14,8 @@
 &left_encoder {
     status = "okay";
 };
+
+// Override sensors node - left side only has left_encoder
+&sensors {
+    sensors = <&left_encoder>;
+};
