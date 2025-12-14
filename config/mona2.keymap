@@ -104,7 +104,7 @@
 &kp LCTRL         &kp LEFT_ALT  &kp LEFT_COMMAND  &lt_to_layer_0 2 DELETE  &lt_space 1 SPACE  &lt_to_layer_0 3 LC(SPACE)    &kp BACKSPACE          &lt_to_layer_0 3 ENTER                             &lt_to_layer_0 3 TAB
             >;
 
-            sensor-bindings = <&scroll_up_down>;
+            sensor-bindings = <&scroll_up_down &scroll_up_down>;
         };
 
         layer_1 {
@@ -115,7 +115,7 @@
 &trans  &trans        &trans    &trans         &trans  &trans    &trans      &trans                                                     &trans
             >;
 
-            sensor-bindings = <&scroll_right_left>;
+            sensor-bindings = <&scroll_right_left &scroll_right_left>;
         };
 
         layer_2 {
@@ -126,7 +126,7 @@
 &trans           &trans                &trans                 &trans            &trans             &trans    &trans  &trans                                                        &trans
             >;
 
-            sensor-bindings = <&scroll_up_down>;
+            sensor-bindings = <&scroll_up_down &scroll_up_down>;
         };
 
         layer_3 {
@@ -137,7 +137,7 @@
 &trans  &trans              &trans            &trans         &trans  &trans    &trans  &trans                                                  &trans
             >;
 
-            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
+            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &inc_dec_kp C_VOL_DN C_VOL_UP>;
         };
 
         layer_4 {
@@ -148,7 +148,7 @@
 &trans  &trans  &trans  &trans  &trans  &trans    &trans       &trans                                                  &bt BT_CLR_ALL
             >;
 
-            sensor-bindings = <&scroll_up_down>;
+            sensor-bindings = <&scroll_up_down &scroll_up_down>;
         };
 
         MOUSE {
@@ -159,7 +159,7 @@
 &trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans                            &trans
             >;
 
-            sensor-bindings = <&scroll_up_down>;
+            sensor-bindings = <&scroll_up_down &scroll_up_down>;
         };
 
         SCROLL {
@@ -170,7 +170,7 @@
 &trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans                          &trans
             >;
 
-            sensor-bindings = <&scroll_up_down>;
+            sensor-bindings = <&scroll_up_down &scroll_up_down>;
         };
     };
 };
