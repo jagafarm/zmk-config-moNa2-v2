@@ -58,6 +58,10 @@
         invert-y; //COROPIT版ではコメントアウトを外す
         zephyr,axis-x = <INPUT_REL_X>;
         zephyr,axis-y = <INPUT_REL_Y>;
+        run-downshift-time-ms = <3264>;
+        rest1-sample-time-ms = <20>;
+        rest1-downshift-time-ms = <9600>;
+        rest2-sample-time-ms = <100>;
     };
 };
 
