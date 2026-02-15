@@ -44,6 +44,11 @@
             key-positions = <33 37>;
             timeout-ms = <50>;
         };
+
+        Voice {
+            bindings = <&kp GLOBE>;
+            key-positions = <37 40>;
+        };
     };
 
     macros {
