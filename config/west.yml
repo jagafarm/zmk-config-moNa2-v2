@@ -28,6 +28,6 @@ manifest:
       revision: main
     - name: zmk-input-processor-keybind
       remote: zettaface
-      revision: v0.3-branch
+      revision: main
   self:
     path: config
