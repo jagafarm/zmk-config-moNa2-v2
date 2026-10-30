@@ -72,7 +72,7 @@
             slot = <0>;
             display-name = "Esc / BLE_M";
             key-positions = <38 39>;
-            bindings = <&lt 11 ESC>;
+            bindings = <&lt 5 ESC>;
         };
 
         tab {
@@ -245,9 +245,9 @@
             display-name = "MAC";
             bindings = <
                 &kp Q    &kp W    &kp E    &kp R    &kp T    &kp Y    &kp U    &kp I    &kp O    &kp P
-                &kp A    &kp S    &kp D    &kp F    &kp G    &kp LG(LEFT_BRACKET)    &kp H    &kp J    &kp K    &kp L    &lt 5 SEMICOLON
+                &kp A    &kp S    &kp D    &kp F    &kp G    &kp LG(LEFT_BRACKET)    &kp H    &kp J    &kp K    &kp L    &lt 2 SEMICOLON
                 &mt LEFT_SHIFT Z    &kp X    &kp C    &kp V    &kp B    &kp F13    &kp LG(RIGHT_BRACKET)    &kp N    &kp M    &kp COMMA    &kp PERIOD    &mt RIGHT_SHIFT SLASH
-                &kp LEFT_CONTROL    &kp LEFT_ALT    &kp LEFT_GUI    &lt 3 LC(DELETE)    &lt 9 SPACE    &lt 7 LC(SPACE)    &kp BACKSPACE    &lt 7 RETURN    &lt 7 TAB
+                &kp LEFT_CONTROL    &kp LEFT_ALT    &kp LEFT_GUI    &lt 1 LC(DELETE)    &lt 4 SPACE    &lt 3 LC(SPACE)    &kp BACKSPACE    &lt 3 RETURN    &lt 3 TAB
             >;
             sensor-bindings = <&rsr_default>; /* JSON: sensorIndex 0 */
         };
@@ -307,67 +307,11 @@
             sensor-bindings = <&rsr_default>; /* JSON: sensorIndex 0 */
         };
 
-        layer_06_scrl_w_layer {
-            display-name = "SCRL_W";
-            bindings = <
-                &kp ESCAPE    &kp LC(LS(TAB))    &kp UP    &kp LC(TAB)    &trans    &trans    &trans    &mkp MB3    &trans    &trans
-                &kp HOME    &kp LEFT    &kp DOWN    &kp RIGHT    &kp END    &out OUT_TOG    &trans    &mkp MB1    &trans    &mkp MB2    &trans
-                &kp LEFT_SHIFT    &kp LS(LG(LEFT))    &trans    &kp LS(LG(RIGHT))    &trans    &trans    &trans    &trans    &mkp MB1    &trans    &mkp MB2    &trans
-                &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans
-            >;
-            sensor-bindings = <&rsr_default>; /* JSON: sensorIndex 0 */
-        };
 
-        layer_07_scrl_m_layer {
-            display-name = "SCRL_M";
-            bindings = <
-                &kp ESCAPE    &kp LC(LS(TAB))    &kp UP    &kp LC(TAB)    &trans    &trans    &trans    &mkp MB3    &trans    &trans
-                &kp HOME    &kp LEFT    &kp DOWN    &kp RIGHT    &kp END    &out OUT_TOG    &trans    &mkp MB1    &trans    &mkp MB2    &trans
-                &kp LEFT_SHIFT    &kp LS(LG(LEFT))    &trans    &kp LS(LG(RIGHT))    &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans
-                &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans
-            >;
-            sensor-bindings = <&rsr_default>; /* JSON: sensorIndex 0 */
-        };
 
-        layer_08_fn_w_layer {
-            display-name = "FN_W";
-            bindings = <
-                &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans
-                &trans    &trans    &trans    &trans    &trans    &trans    &trans    &mkp MB1    &mkp MB3    &mkp MB2    &trans
-                &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans
-                &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans
-            >;
-        };
 
-        layer_09_fn_m_layer {
-            display-name = "FN_M";
-            bindings = <
-                &kp A    &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans
-                &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans
-                &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans
-                &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans
-            >;
-        };
 
-        layer_10_ble_w_layer {
-            display-name = "BLE_W";
-            bindings = <
-                &kp F1    &kp F2    &kp F3    &kp F4    &kp F5    &bt BT_SEL 0    &bt BT_SEL 1    &bt BT_SEL 2    &bt BT_SEL 3    &bt BT_SEL 4
-                &kp F6    &kp F7    &kp F8    &kp F9    &trans    &out OUT_TOG    &trans    &trans    &trans    &trans    &studio_unlock
-                &trans    &kp N1    &kp N2    &kp N3    &trans    &trans    &bootloader    &trans    &trans    &trans    &trans    &bt BT_CLR
-                &trans    &trans    &trans    &trans    &trans    &trans    &trans    &bootloader    &bt BT_CLR_ALL
-            >;
-        };
 
-        layer_11_ble_m_layer {
-            display-name = "BLE_M";
-            bindings = <
-                &kp F1    &kp F2    &kp F3    &kp F4    &kp F5    &bt BT_SEL 0    &bt BT_SEL 1    &bt BT_SEL 2    &bt BT_SEL 3    &bt BT_SEL 4
-                &kp F6    &kp F7    &kp F8    &kp F9    &trans    &out OUT_TOG    &trans    &trans    &trans    &trans    &studio_unlock
-                &trans    &kp N1    &kp N2    &kp N3    &trans    &trans    &bootloader    &trans    &trans    &trans    &trans    &bt BT_CLR
-                &trans    &trans    &trans    &trans    &trans    &trans    &trans    &bootloader    &bt BT_CLR_ALL
-            >;
-        };
 
     };
 };
