@@ -27,14 +27,6 @@ include:
     snippet: studio-rpc-usb-uart
     artifact-name: mona2_r-pmw3610
   - board: xiao_ble/nrf52840/zmk
-    shield: mona2_r rgbled_adapter
-    snippet: studio-rpc-usb-uart
-    # NOTE: Zephyr は devicetree を Kconfig より先に処理するため、
-    #       .overlay 内の #ifdef CONFIG_TRACKBALL_PAW3222 はクリーンビルドで効かない。
-    #       センサの切り替えは paw3222.overlay 側で行う。
-    cmake-args: '-DEXTRA_CONF_FILE=../../config/paw3222.conf -DEXTRA_DTC_OVERLAY_FILE=../../config/paw3222.overlay'
-    artifact-name: mona2_r-paw3222
-  - board: xiao_ble/nrf52840/zmk
     shield: mona2_l rgbled_adapter
   - board: xiao_ble/nrf52840/zmk
     shield: settings_reset
