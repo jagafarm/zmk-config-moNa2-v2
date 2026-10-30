@@ -86,6 +86,7 @@
     y-codes = <INPUT_REL_Y>;
     xy-to-scroll-enabled;
     active-layers = <0x00000008>; /* layer3 (SCRL_M) */
+    temp-layer = <3>;      /* 一時レイヤー: SCRL_M (3) */
     scale-multiplier = <1>;
     scale-divisor = <1>;   /* Studio UI の倍率がそのまま実効値 (1.0x基準)。固定減速は listener 側 zip_scroll_scaler */
 };
