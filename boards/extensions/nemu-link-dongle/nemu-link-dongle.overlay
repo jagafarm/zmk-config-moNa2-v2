@@ -3,6 +3,8 @@
    ESB radio ノード、トラックボール入力の proxy+listener を定義する。
    kscan0 は dongle ボード定義の kscan-mock に解決される。 */
 #include "../../../boards/shields/mona2/mona2_layouts.dtsi"
+#include <dt-bindings/zmk/input_transform.h>
+#include <input/processors.dtsi>
 
 / {
     chosen {
@@ -27,11 +29,12 @@
     };
 
     /* proxy に届いたイベントを USB HID へ流す listener。
-       軸反転・スクロール等の input processor は右 half 側で済んでいるので
-       ここでは何も掛けない。 */
+       ESB 経由だと右 half 側のドライバ軸反転と向きが合わないため、
+       Y のみここで反転する (README 推奨の zip_xy_transform)。 */
     trackball_input_listener: trackball_input_listener {
         compatible = "zmk,input-listener";
         device = <&trackball_input_split>;
         status = "okay";
+        input-processors = <&zip_xy_transform (INPUT_TRANSFORM_Y_INVERT)>;
     };
 };
