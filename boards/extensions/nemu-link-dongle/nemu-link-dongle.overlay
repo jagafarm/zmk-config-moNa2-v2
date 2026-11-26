@@ -37,6 +37,21 @@
         triggers-per-rotation = <24>;
     };
 
+    /* sekigon dynamic-encoder source (halves 側 mona2.dtsi のものと同一
+       設定)。ESB 経由で届く sensor イベントを layer 別保存バインドへ
+       解決する。既定はスクロール。 */
+    runtime_encoder_source: runtime_encoder_source {
+        compatible = "sekigon,dynamic-encoder-source";
+        source-name = "main";
+        label = "Encoder";
+        sensor = <&dongle_sensor0>;
+        sensor-index = <0>;
+        input-mode = "angle";
+        target-role = "keyboard-right";
+        default-cw-binding = <&msc SCRL_DOWN>;
+        default-ccw-binding = <&msc SCRL_UP>;
+    };
+
     /* 右 half の trackball_central_listener (listener index 0) から
        ESB 経由で届く入力イベントを受け取る proxy。
        wire reg は listener index と一致させる (既定の identity マッピング)。 */

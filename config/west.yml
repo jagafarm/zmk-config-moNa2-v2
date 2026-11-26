@@ -54,18 +54,27 @@ manifest:
     - name: zmk-module-runtime-input-processor
       remote: cormoran
       revision: main
-    - name: zmk-behavior-runtime-sensor-rotate
-      remote: cormoran
-      revision: main
+    # zmk-behavior-runtime-sensor-rotate (cormoran) は廃止。
+    # この ZMK fork では combo.c/keymap.c に sekigon の dynamic-*
+    # フックが組み込まれており、cormoran 系はリスナー順序の問題で
+    # 正しく動かない (hold-tap 等がイベントを先に消費する)。
     # zmk-module-battery-history は使わないので無効化
     # - name: zmk-module-battery-history
     #   remote: cormoran
     #   revision: main
 
     # ── マクロ / コンボのランタイム編集 ─────────────────────────
-    - name: zmk-feature-runtime-combo
-      url: https://github.com/jagafarm/zmk-feature-runtime-combo
-      revision: nemu-probe
+    # sekigon dynamic-*: stock combo listener / keymap sensor lookup
+    # に組み込み済みフック経由で動くためイベント順序が正しい。
+    - name: zmk-feature-dynamic-settings
+      remote: sekigon-gonnoc
+      revision: main
+    - name: zmk-feature-dynamic-combo
+      remote: sekigon-gonnoc
+      revision: main
+    - name: zmk-feature-dynamic-encoder
+      remote: sekigon-gonnoc
+      revision: main
     - name: zmk-feature-runtime-macro
       remote: cormoran
       revision: main

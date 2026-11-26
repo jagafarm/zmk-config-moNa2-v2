@@ -1,7 +1,6 @@
 #include <input/processors.dtsi>
 #include <dt-bindings/zmk/input_transform.h>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
-#include <behaviors/runtime-sensor-rotate.dtsi>
 #include <behaviors.dtsi>
 /* DYA Studio から作成したマクロを呼び出す `&rmacro <slot>` を定義する。
    slot は 0 〜 CONFIG_ZMK_RUNTIME_MACRO_COUNT-1 (現状 0〜7)。
@@ -68,44 +67,49 @@
 };
 
 / {
-    runtime_combo_defaults {
-        compatible = "cormoran,runtime-combo-defaults";
-
-        esc_ble {
-            slot = <0>;
-            display-name = "Esc / BLE_M";
-            key-positions = <38 39>;
-            bindings = <&lt 5 ESC>;
-        };
-
-        tab {
-            slot = <1>;
-            display-name = "Tab";
-            key-positions = <11 12>;
-            bindings = <&kp TAB>;
-        };
-
-        middle_click {
-            slot = <2>;
-            display-name = "Middle click";
-            key-positions = <17 18>;
-            bindings = <&mkp MB3>;
-        };
-
-        right_click {
-            slot = <3>;
-            display-name = "Right click";
-            key-positions = <18 19>;
-            bindings = <&mkp MB2>;
-        };
-
-        ctrl_space {
-            slot = <4>;
-            display-name = "Ctrl+Space";
-            key-positions = <33 37>;
-            bindings = <&kp LC(SPACE)>;
-        };
+    /* sekigon dynamic-combo slots。stock combo listener (keymap より先に
+       実行される) 経由で評価されるため hold-tap 位置でも正しく発火する。
+       設定 record は shared scope で ESB 経由 dongle と同期される。 */
+    combo_slot0: combo_slot0 {
+        compatible = "sekigon,dynamic-combo-slot";
+        slot-index = <0>;
+        target-role = "keyboard-right";
+        default-key-positions = <38 39>;
+        default-binding = <&lt 5 ESC>;
     };
+
+    combo_slot1: combo_slot1 {
+        compatible = "sekigon,dynamic-combo-slot";
+        slot-index = <1>;
+        target-role = "keyboard-right";
+        default-key-positions = <11 12>;
+        default-binding = <&kp TAB>;
+    };
+
+    combo_slot2: combo_slot2 {
+        compatible = "sekigon,dynamic-combo-slot";
+        slot-index = <2>;
+        target-role = "keyboard-right";
+        default-key-positions = <17 18>;
+        default-binding = <&mkp MB3>;
+    };
+
+    combo_slot3: combo_slot3 {
+        compatible = "sekigon,dynamic-combo-slot";
+        slot-index = <3>;
+        target-role = "keyboard-right";
+        default-key-positions = <18 19>;
+        default-binding = <&mkp MB2>;
+    };
+
+    combo_slot4: combo_slot4 {
+        compatible = "sekigon,dynamic-combo-slot";
+        slot-index = <4>;
+        target-role = "keyboard-right";
+        default-key-positions = <33 37>;
+        default-binding = <&kp LC(SPACE)>;
+    };
+
     /* 静的マクロ。キーマップ上で &BT0 / &screenshot などの名前で直接
        参照しているため、そのまま残している (DYA Studio 上では編集不可)。
        DYA Studio から編集したいマクロは Web UI で新規作成し、
@@ -199,12 +203,12 @@
         // DYA Studio Web UI から レイヤーごとに cw/ccw の binding を
         // kp C_VOL_UP/DN や kp LEFT/RIGHT などへ動的変更可能
 
-        rsr_default: rsr_default {
-            compatible = "zmk,behavior-runtime-sensor-rotate";
-            #sensor-binding-cells = <0>;
-            tap-ms = <16>;
-            cw-binding = <&msc SCRL_DOWN>;
-            ccw-binding = <&msc SCRL_UP>;
+        /* sekigon dynamic-encoder: keymap.c の dynamic_sensor_binding_lookup
+           フック経由でレイヤー別の保存済みバインドを解決する。
+           sensor-bindings にはこのノードを指定する。 */
+        runtime_encoder: runtime_encoder {
+            compatible = "sekigon,dynamic-behavior-runtime-encoder";
+            #binding-cells = <0>;
         };
 
         tog_on: toggle_layer_on_only {
@@ -252,7 +256,7 @@
                 &mt LEFT_SHIFT Z    &kp X    &kp C    &kp V    &kp B    &kp F13    &kp LG(RIGHT_BRACKET)    &kp N    &kp M    &kp COMMA    &kp PERIOD    &mt RIGHT_SHIFT SLASH
                 &kp LEFT_CONTROL    &kp LEFT_ALT    &kp LEFT_GUI    &lt 1 LC(DELETE)    &lt 4 SPACE    &lt 3 LC(SPACE)    &kp BACKSPACE    &lt 3 RETURN    &lt 3 TAB
             >;
-            sensor-bindings = <&rsr_default>; /* JSON: sensorIndex 0 */
+            sensor-bindings = <&runtime_encoder>; /* JSON: sensorIndex 0 */
         };
 
         layer_01_num_m_layer {
@@ -263,7 +267,7 @@
                 &trans    &kp LG(X)    &kp LS(LG(C))    &kp LG(V)    &kp LG(B)    &trans    &trans    &trans    &trans    &trans    &kp SQT    &kp NON_US_BACKSLASH
                 &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans
             >;
-            sensor-bindings = <&rsr_default>; /* JSON: sensorIndex 0 */
+            sensor-bindings = <&runtime_encoder>; /* JSON: sensorIndex 0 */
         };
 
         layer_02_mouse_m_layer {
@@ -274,7 +278,7 @@
                 &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans
                 &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans
             >;
-            sensor-bindings = <&rsr_default>; /* JSON: sensorIndex 0 */
+            sensor-bindings = <&runtime_encoder>; /* JSON: sensorIndex 0 */
         };
 
         layer_03_scrl_m_layer {
@@ -285,7 +289,7 @@
                 &trans    &trans    &trans    &trans    &trans    &trans    &trans    &kp LG(W)    &kp LS(LG(T))    &kp LC(LS(EQUAL))    &trans    &trans
                 &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans
             >;
-            sensor-bindings = <&rsr_default>; /* JSON: sensorIndex 0 */
+            sensor-bindings = <&runtime_encoder>; /* JSON: sensorIndex 0 */
         };
 
         layer_04_fn_m_layer {
@@ -296,7 +300,7 @@
                 &trans    &trans    &trans    &trans    &trans    &trans    &trans    &kp N0    &kp N1    &kp N2    &kp N3    &kp RETURN
                 &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans
             >;
-            sensor-bindings = <&rsr_default>; /* JSON: sensorIndex 0 */
+            sensor-bindings = <&runtime_encoder>; /* JSON: sensorIndex 0 */
         };
 
         layer_05_ble_m_layer {
@@ -307,7 +311,7 @@
                 &trans    &kp N1    &kp N2    &kp N3    &trans    &trans    &bootloader    &trans    &trans    &trans    &trans    &bt BT_CLR
                 &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans    &bt BT_CLR_ALL
             >;
-            sensor-bindings = <&rsr_default>; /* JSON: sensorIndex 0 */
+            sensor-bindings = <&runtime_encoder>; /* JSON: sensorIndex 0 */
         };
 
 
