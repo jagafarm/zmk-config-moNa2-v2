@@ -1,0 +1,2 @@
+config BOARD_NEMU_LINK_DONGLE
+    select ZMK_BOARD_COMPAT
