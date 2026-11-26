@@ -44,8 +44,7 @@
         input-processors = <&zip_xy_transform (INPUT_TRANSFORM_Y_INVERT)
                             &mg &scroll_runtime_input_processor
                             &mouse_runtime_input_processor
-                            &zip_scroll_scaler 1 60
-                            &inertial_scroll>;
+                            &zip_scroll_scaler 1 60>;
     };
 
     /* mona2_r.overlay と同じ gesture / inertial scroll ノード */
@@ -61,11 +60,9 @@
             bindings = <&kp ESC>;
         };
     };
-    inertial_scroll: inertial_scroll {
-        compatible = "zmk,input-processor-inertial-scroll";
-        status = "okay";
-        #input-processor-cells = <0>;
-    };
+    /* inertial_scroll は ZMK_MOUSE_GESTURE_RPC 配下でのみコンパイルされるため
+       dongle では外す (モジュール既定でも off)。必要なら
+       CONFIG_ZMK_MOUSE_GESTURE_RPC=y を追加して復帰可能。 */
 };
 
 /* mona2_r.overlay と同じ runtime processor 設定 */
