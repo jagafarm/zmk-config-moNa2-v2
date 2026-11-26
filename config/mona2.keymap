@@ -290,7 +290,10 @@
                 &trans    &trans    &trans    &trans    &trans    &trans    &trans    &kp LG(W)    &kp LS(LG(T))    &kp LC(LS(EQUAL))    &trans    &trans
                 &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans
             >;
-            sensor-bindings = <&runtime_encoder>; /* JSON: sensorIndex 0 */
+            /* SCRL_M は音量固定 (param1=CW=Vol+, param2=CCW=Vol-)。
+               dynamic-encoder レコードが有効化されると静的バインドより
+               優先されるため、その場合は Studio 側の割当が使われる。 */
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>; /* JSON: sensorIndex 0 */
         };
 
         layer_04_fn_m_layer {
