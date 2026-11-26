@@ -68,13 +68,13 @@ manifest:
     # に組み込み済みフック経由で動くためイベント順序が正しい。
     - name: zmk-feature-dynamic-settings
       remote: sekigon-gonnoc
-      revision: main
+      revision: master
     - name: zmk-feature-dynamic-combo
       remote: sekigon-gonnoc
-      revision: main
+      revision: master
     - name: zmk-feature-dynamic-encoder
       remote: sekigon-gonnoc
-      revision: main
+      revision: master
     - name: zmk-feature-runtime-macro
       remote: cormoran
       revision: main
