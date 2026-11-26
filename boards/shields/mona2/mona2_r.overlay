@@ -94,6 +94,9 @@
     /* 自動マウスレイヤー: MOUSE_M (2) */
     temp-layer-enabled;
     temp-layer = <2>;
+    /* nemu-link-dongle.overlay と揃え、ポインタ経路のみ Y を反転
+       (scroll 経路は raw が正方向) */
+    y-invert;
 };
 
 /* ─────────────────────────────────────────────────────────────

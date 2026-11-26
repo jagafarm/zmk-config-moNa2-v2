@@ -216,7 +216,7 @@
         scroll_encoder: scroll_encoder {
             compatible = "zmk,behavior-sensor-rotate";
             #sensor-binding-cells = <0>;
-            bindings = <&msc SCRL_DOWN>, <&msc SCRL_UP>;
+            bindings = <&msc SCRL_UP>, <&msc SCRL_DOWN>;
             tap-ms = <20>;
         };
 
@@ -298,10 +298,10 @@
                 &trans    &trans    &trans    &trans    &trans    &trans    &trans    &kp LG(W)    &kp LS(LG(T))    &kp LC(LS(EQUAL))    &trans    &trans
                 &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans
             >;
-            /* SCRL_M は音量固定 (param1=CW=Vol+, param2=CCW=Vol-)。
+            /* SCRL_M は音量固定 (CW=Vol-, CCW=Vol+)。
                dynamic-encoder レコードが有効化されると静的バインドより
                優先されるため、その場合は Studio 側の割当が使われる。 */
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>; /* JSON: sensorIndex 0 */
+            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>; /* JSON: sensorIndex 0 */
         };
 
         layer_04_fn_m_layer {
