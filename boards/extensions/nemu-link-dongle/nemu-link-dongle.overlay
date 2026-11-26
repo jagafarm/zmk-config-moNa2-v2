@@ -19,6 +19,24 @@
         compatible = "sekigon,nemu-link-radio";
     };
 
+    /* halves (mona2.dtsi) と同じ sensor index 空間を dongle にも持たせる。
+       dongle には実センサーが無いため phandle 先はプレースホルダにする
+       (halves の right_encoder と同じパターン)。このノードが無いと
+       ZMK_KEYMAP_SENSORS_LEN=0 となり、ESB で届くセンサーイベントが
+       link_split.c の index チェックで全て捨てられる。 */
+    dongle_sensor0: dongle_sensor0 {
+        status = "disabled";
+    };
+    dongle_sensor1: dongle_sensor1 {
+        status = "disabled";
+    };
+
+    sensors: sensors {
+        compatible = "zmk,keymap-sensors";
+        sensors = <&dongle_sensor0 &dongle_sensor1>;
+        triggers-per-rotation = <24>;
+    };
+
     /* 右 half の trackball_central_listener (listener index 0) から
        ESB 経由で届く入力イベントを受け取る proxy。
        wire reg は listener index と一致させる (既定の identity マッピング)。 */
