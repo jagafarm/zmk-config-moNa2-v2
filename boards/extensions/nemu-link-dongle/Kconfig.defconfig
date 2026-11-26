@@ -1,0 +1,7 @@
+# nemu-link-dongle は ZMK 専用ボード。新しい build workflow の
+# "Missing ZMK Compat" チェックが要求する CONFIG_ZMK_BOARD_COMPAT を
+# ここで立てる (モジュール側 Kconfig.nemu-link-dongle には無い)。
+if BOARD_NEMU_LINK_DONGLE
+config ZMK_BOARD_COMPAT
+    default y
+endif
