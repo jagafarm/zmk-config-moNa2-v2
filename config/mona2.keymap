@@ -203,13 +203,21 @@
         // DYA Studio Web UI から レイヤーごとに cw/ccw の binding を
         // kp C_VOL_UP/DN や kp LEFT/RIGHT などへ動的変更可能
 
-        /* sekigon dynamic-encoder: keymap.c の dynamic_sensor_binding_lookup
-           フック経由でレイヤー別の保存済みバインドを解決する。
-           sensor-bindings にはこのノードを指定する。 */
+        /* sekigon dynamic-encoder adapter: dynamic_sensor_binding_lookup フックが
+           Studio 保存済みレコードを解決する際に使用する (DT_INST(0) として必須)。 */
         runtime_encoder: runtime_encoder {
             compatible = "sekigon,dynamic-behavior-runtime-encoder";
             #binding-cells = <0>;
             #sensor-binding-cells = <0>;
+        };
+
+        /* 通常レイヤーの既定エンコーダ動作: 静的スクロール。
+           dynamic-encoder で該当レイヤーに保存済みレコードがあればそちらが優先される。 */
+        scroll_encoder: scroll_encoder {
+            compatible = "zmk,behavior-sensor-rotate";
+            #sensor-binding-cells = <0>;
+            bindings = <&msc SCRL_DOWN>, <&msc SCRL_UP>;
+            tap-ms = <20>;
         };
 
         tog_on: toggle_layer_on_only {
@@ -257,7 +265,7 @@
                 &mt LEFT_SHIFT Z    &kp X    &kp C    &kp V    &kp B    &kp F13    &kp LG(RIGHT_BRACKET)    &kp N    &kp M    &kp COMMA    &kp PERIOD    &mt RIGHT_SHIFT SLASH
                 &kp LEFT_CONTROL    &kp LEFT_ALT    &kp LEFT_GUI    &lt 1 LC(DELETE)    &lt 4 SPACE    &lt 3 LC(SPACE)    &kp BACKSPACE    &lt 3 RETURN    &lt 3 TAB
             >;
-            sensor-bindings = <&runtime_encoder>; /* JSON: sensorIndex 0 */
+            sensor-bindings = <&scroll_encoder>; /* JSON: sensorIndex 0 */
         };
 
         layer_01_num_m_layer {
@@ -268,7 +276,7 @@
                 &trans    &kp LG(X)    &kp LS(LG(C))    &kp LG(V)    &kp LG(B)    &trans    &trans    &trans    &trans    &trans    &kp SQT    &kp NON_US_BACKSLASH
                 &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans
             >;
-            sensor-bindings = <&runtime_encoder>; /* JSON: sensorIndex 0 */
+            sensor-bindings = <&scroll_encoder>; /* JSON: sensorIndex 0 */
         };
 
         layer_02_mouse_m_layer {
@@ -279,7 +287,7 @@
                 &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans
                 &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans
             >;
-            sensor-bindings = <&runtime_encoder>; /* JSON: sensorIndex 0 */
+            sensor-bindings = <&scroll_encoder>; /* JSON: sensorIndex 0 */
         };
 
         layer_03_scrl_m_layer {
@@ -304,7 +312,7 @@
                 &trans    &trans    &trans    &trans    &trans    &trans    &trans    &kp N0    &kp N1    &kp N2    &kp N3    &kp RETURN
                 &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans
             >;
-            sensor-bindings = <&runtime_encoder>; /* JSON: sensorIndex 0 */
+            sensor-bindings = <&scroll_encoder>; /* JSON: sensorIndex 0 */
         };
 
         layer_05_ble_m_layer {
@@ -315,7 +323,7 @@
                 &trans    &kp N1    &kp N2    &kp N3    &trans    &trans    &bootloader    &trans    &trans    &trans    &trans    &bt BT_CLR
                 &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans    &bt BT_CLR_ALL
             >;
-            sensor-bindings = <&runtime_encoder>; /* JSON: sensorIndex 0 */
+            sensor-bindings = <&scroll_encoder>; /* JSON: sensorIndex 0 */
         };
 
 

@@ -20,37 +20,35 @@
         compatible = "sekigon,nemu-link-radio";
     };
 
-    /* halves (mona2.dtsi) と同じ sensor index 空間を dongle にも持たせる。
-       dongle には実センサーが無いため phandle 先はプレースホルダにする
-       (halves の right_encoder と同じパターン)。このノードが無いと
-       ZMK_KEYMAP_SENSORS_LEN=0 となり、ESB で届くセンサーイベントが
-       link_split.c の index チェックで全て捨てられる。 */
-    dongle_sensor0: dongle_sensor0 {
+    /* halves (mona2.dtsi) と同じ sensor index 空間・ノード名を dongle にも持たせる。
+       dongle には実センサーが無いためプレースホルダにするが、Studio キーマップ同期の
+       contract ハッシュ (generate-studio.py) に sensors の phandle 先ノード名が含まれるため
+       mona2.dtsi と同じ encoder_left / encoder_right に揃える。 */
+    left_encoder: encoder_left {
         status = "disabled";
     };
-    dongle_sensor1: dongle_sensor1 {
+    right_encoder: encoder_right {
         status = "disabled";
     };
 
     sensors: sensors {
         compatible = "zmk,keymap-sensors";
-        sensors = <&dongle_sensor0 &dongle_sensor1>;
+        sensors = <&left_encoder &right_encoder>;
         triggers-per-rotation = <24>;
     };
 
-    /* sekigon dynamic-encoder source (halves 側 mona2.dtsi のものと同一
-       設定)。ESB 経由で届く sensor イベントを layer 別保存バインドへ
-       解決する。既定はスクロール。 */
+    /* sekigon dynamic-encoder source (halves 側 mona2.dtsi と同一設定)。
+       default-cw/ccw-binding を持たせないことで未設定時は keymap の静的
+       sensor-bindings (&scroll_encoder / &inc_dec_kp) にフォールスルーし、
+       Studio で明示設定したレイヤーのみ動的上書きされる。 */
     runtime_encoder_source: runtime_encoder_source {
         compatible = "sekigon,dynamic-encoder-source";
         source-name = "main";
         label = "Encoder";
-        sensor = <&dongle_sensor0>;
+        sensor = <&left_encoder>;
         sensor-index = <0>;
         input-mode = "angle";
         target-role = "keyboard-right";
-        default-cw-binding = <&msc SCRL_DOWN>;
-        default-ccw-binding = <&msc SCRL_UP>;
     };
 
     /* 右 half の trackball_central_listener (listener index 0) から

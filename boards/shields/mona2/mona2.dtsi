@@ -54,9 +54,9 @@
         triggers-per-rotation = <24>;
     };
 
-    /* sekigon dynamic-encoder source。keymap の &runtime_encoder 経由で
-       layer 別に割り当てられた binding を解決する。既定はスクロール。
-       sensor-index は上記 sensors リスト内の index (0=left)。 */
+    /* sekigon dynamic-encoder source。未設定時は keymap の静的 sensor-bindings
+       (&scroll_encoder / &inc_dec_kp) にフォールスルーし、Studio で設定した
+       レイヤーのみ動的上書きされる。sensor-index は上記 sensors リスト内の index (0=left)。 */
     runtime_encoder_source: runtime_encoder_source {
         compatible = "sekigon,dynamic-encoder-source";
         source-name = "main";
@@ -65,8 +65,6 @@
         sensor-index = <0>;
         input-mode = "angle";
         target-role = "keyboard-right";
-        default-cw-binding = <&msc SCRL_DOWN>;
-        default-ccw-binding = <&msc SCRL_UP>;
     };
 
     /* nemu-link: 両 half 共通の ESB radio ノード (全 peer で一致させる) */
