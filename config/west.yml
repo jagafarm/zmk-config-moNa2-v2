@@ -20,16 +20,24 @@ manifest:
       url-base: https://github.com/shakushakupanda
   projects:
     # ── ZMK 本体 ────────────────────────────────────────────────
-    # DYA Studio の最新機能 (ランタイムマクロ / ランタイムコンボ) は
-    # cormoran さんの custom Studio RPC プロトコルを含む ZMK でしか動かない。
-    # `main+dya` は `main+custom-studio-protocol` を包含する DYA 向けブランチで、
-    # cormoran/zmk-keyboard-dya2 v2.0 が実際に採用している構成。
-    # ベースは ZMK v0.4 系 (Zephyr 4.1) で、旧 `v0.3-branch+dya` (Zephyr 3.5) から
-    # メジャーバージョンが上がっている点に注意。
+    # nemu-link 対応ブランチ: cormoran さんの main+dya (custom Studio RPC =
+    # ランタイムマクロ/コンボ等) と sekigon さんの v0.4+nemu-link
+    # (独自 2.4GHz ESB transport) をマージした jagafarm/zmk のブランチ。
+    # zephyr は sekigon/zephyr v4.1.0+nemu-link (zmk-fixes + nemu 用フック)、
+    # zmk-studio-messages は jagafarm/zmk-studio-messages nemu-link+dya
+    # (sekigon settings field 6 + cormoran custom field 100) を使う。
     - name: zmk
-      remote: cormoran
-      revision: main+dya
+      url: https://github.com/jagafarm/zmk
+      revision: main+dya+nemu-link
       import: app/west.yml
+
+    # ── nemu-link モジュール ────────────────────────────────────
+    # 独自 2.4GHz ESB transport、nemu-link-dongle ボード定義、鍵 provisioning。
+    # import で sekigon/sdk-nrf (ESB) と nrfxlib も引き込む。
+    - name: zmk-feature-nemu-link
+      remote: sekigon-gonnoc
+      revision: zmk-v0.4
+      import: config/west.yml
 
     # ── DYA Studio 共通基盤 ─────────────────────────────────────
     # 設定の永続化レイヤ。runtime-input-processor / runtime-combo /

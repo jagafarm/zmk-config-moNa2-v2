@@ -1,0 +1,3 @@
+// nemu-link-dongle のローカル keymap。位置→キーの対応は
+// キーボード側と同じ mona2.keymap を使う。
+#include "./mona2.keymap"

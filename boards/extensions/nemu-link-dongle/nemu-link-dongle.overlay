@@ -1,0 +1,37 @@
+/* nemu-link-dongle 用拡張 overlay。
+   dongle にはローカルの key matrix がないため、physical layout と
+   ESB radio ノード、トラックボール入力の proxy+listener を定義する。
+   kscan0 は dongle ボード定義の kscan-mock に解決される。 */
+#include "../../../boards/shields/mona2/mona2_layouts.dtsi"
+
+/ {
+    chosen {
+        zmk,physical-layout = &physical_layout0;
+    };
+
+    nemu_link {
+        compatible = "sekigon,nemu-link-radio";
+    };
+
+    /* 右 half の trackball_central_listener (listener index 0) から
+       ESB 経由で届く入力イベントを受け取る proxy。
+       wire reg は listener index と一致させる (既定の identity マッピング)。 */
+    split_inputs {
+        #address-cells = <1>;
+        #size-cells = <0>;
+
+        trackball_input_split: trackball_input_split@0 {
+            compatible = "zmk,input-split";
+            reg = <0>;
+        };
+    };
+
+    /* proxy に届いたイベントを USB HID へ流す listener。
+       軸反転・スクロール等の input processor は右 half 側で済んでいるので
+       ここでは何も掛けない。 */
+    trackball_input_listener: trackball_input_listener {
+        compatible = "zmk,input-listener";
+        device = <&trackball_input_split>;
+        status = "okay";
+    };
+};
