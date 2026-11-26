@@ -209,6 +209,7 @@
         runtime_encoder: runtime_encoder {
             compatible = "sekigon,dynamic-behavior-runtime-encoder";
             #binding-cells = <0>;
+            #sensor-binding-cells = <0>;
         };
 
         tog_on: toggle_layer_on_only {
