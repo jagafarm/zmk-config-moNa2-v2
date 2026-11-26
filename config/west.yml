@@ -64,8 +64,8 @@ manifest:
 
     # ── マクロ / コンボのランタイム編集 ─────────────────────────
     - name: zmk-feature-runtime-combo
-      remote: cormoran
-      revision: main
+      url: https://github.com/jagafarm/zmk-feature-runtime-combo
+      revision: nemu-probe
     - name: zmk-feature-runtime-macro
       remote: cormoran
       revision: main
