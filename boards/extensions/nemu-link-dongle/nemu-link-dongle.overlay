@@ -36,13 +36,14 @@
        ESB 時は右 half 側 (input_listener.c) が processor を全バイパスして
        raw イベントを流してくるため、右 half と同等の processor チェーンを
        ここで掛ける。dongle は keymap を持つので temp-layer 等も機能する。
-       Y 反転はチェーン先頭で行う (右側のドライバ反転相当)。 */
+       軸反転は mona2_r 側では mouse_runtime (実行時設定) に掛かっていた
+       ため、ポインタ経路だけの反転として下で y-invert を付ける。
+       スクロール経路には掛けない (raw Y が正方向)。 */
     trackball_input_listener: trackball_input_listener {
         compatible = "zmk,input-listener";
         device = <&trackball_input_split>;
         status = "okay";
-        input-processors = <&zip_xy_transform (INPUT_TRANSFORM_Y_INVERT)
-                            &mg &scroll_runtime_input_processor
+        input-processors = <&mg &scroll_runtime_input_processor
                             &mouse_runtime_input_processor
                             &zip_scroll_scaler 1 60>;
     };
@@ -79,4 +80,7 @@
     /* 自動マウスレイヤー: MOUSE_M (2) */
     temp-layer-enabled;
     temp-layer = <2>;
+    /* mona2_r では軸反転が runtime 設定側で掛かっていたため、
+       ポインタ経路のみ Y を反転 (scroll 経路は raw が正方向) */
+    y-invert;
 };
